@@ -4,15 +4,24 @@
     <meta charset="UTF-8">
     <title>Rocket Clicker</title>
     <link rel="stylesheet" href="Styles.css"/>
+    <style>
+        .image-button {
+            width: 350px;
+            height: 500px;
+            background-image: url(
+            'rocketShip.jpg');
+            background-size: cover;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <script src="Logic.js" charset="utf-8" type="text/javascript"></script>
 <body>
   <h1>Rocket Clicker</h1>
   <p id="starsGathered">0 Stars Gathered</p>
-  <button onclick="gatherStars()" type="button">Gather Stars
-    <img src="rocketShip.jpg"
-         alt="Button Image" style="width: 350px; height: 500px;">
+  <button class="image-button"
+          onclick="gatherStars()" type="button" id="stars">
   </button>
 </body>
 </html>
-
