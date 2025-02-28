@@ -5,26 +5,20 @@
     <title>Rocket Clicker</title>
     <link rel="stylesheet" href="Styles.css"/>
     <style>
-        .image-button {
-            width: 250px;
-            height: 400px;
-            background-image: url(
-            'rocketShip.jpg');
-            background-size: cover;
-            border: none;
+        #rocketCanvas {
             cursor: pointer;
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+          rel="stylesheet">
 </head>
-<script src="Logic.js" charset="utf-8" type="text/javascript"></script>
 <body>
-  <h1>Star Jump</h1>
-  <p id="starsGathered">0 Stars Gathered</p>
-  <button class="image-button"
-          onclick="gatherStars()" type="button" id="stars">
-  </button>
+<h1>Star Jump</h1>
+<p id="starsGathered">0 Stars Gathered</p>
+<canvas id="rocketCanvas"></canvas>
+
+<script src="Logic.js"></script>
 </body>
 </html>
