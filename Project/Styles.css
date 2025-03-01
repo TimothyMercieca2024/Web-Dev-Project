@@ -2,6 +2,19 @@ h1 {
     font-family: "Pixelify Sans", sans-serif;
 }
 
-body{
-    background-color: darkslateblue;
+body {
+    height: 100vh;
+    background: linear-gradient(45deg, darkblue, darkmagenta, darkviolet);
+    background-size: 175% 175%;
+    animation: gradientMove 5s infinite linear;
 }
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
