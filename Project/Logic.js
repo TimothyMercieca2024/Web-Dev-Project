@@ -6,7 +6,7 @@ var gameData = {
 const canvas = document.getElementById('rocketCanvas'); //grabs the <canvas> element from the HTML file
 const ctx = canvas.getContext('2d'); // Displays a 2D version of it and uses ctx to actually display and draw the image on the canvas
 const img = new Image();
-img.src = 'rocketShip_cutout.png';// creates a new image source which is rocketShip_cutout.png
+img.src = 'rocketShip_cutout3.png';// creates a new image source which is rocketShip_cutout.png
 
 img.onload = () => {
     canvas.width = 300;
