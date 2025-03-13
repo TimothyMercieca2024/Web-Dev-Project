@@ -2,19 +2,65 @@ h1 {
     font-family: "Pixelify Sans", sans-serif;
 }
 
-body {
-    height: 100vh;
-    background: linear-gradient(45deg, darkblue, darkmagenta, darkviolet);
-    background-size: 175% 175%;
-    animation: gradientMove 5s infinite linear;
+#rocketCanvas {
+    cursor: pointer;
 }
 
-@keyframes gradientMove {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 100% 100%;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body{
+    background: black;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+h1{
+    color: white;
+}
+
+#starsGathered{
+    color: darkgoldenrod;
+}
+
+#rocketCanvas{
+    position: absolute;
+    top: 67%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.star{
+    position: absolute;
+    top: -20px;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border-radius: 50%;
+    animation: animate 10s linear forwards;
+    font-size: 1px;
+    opacity: 0.2;
+    z-index: -1;
+    box-shadow: 0 0 2px white, 0 0 4px rgba(255, 255, 255, 0.5);
+
+}
+
+
+
+@keyframes animate {
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    80%{
+        opacity:1;
+    }
+    100%{
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
