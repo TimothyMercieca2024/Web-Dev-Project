@@ -3,6 +3,16 @@ var gameData = {
     starsPerClick: 1
 };
 
+document.getElementById("startButton").addEventListener("click", function() {
+    let titleScreen = document.getElementById("titleScreen");
+    titleScreen.style.opacity = "0";
+
+    setTimeout(() => {
+        titleScreen.style.display = "none";
+        document.getElementById("gameContainer").style.display = "block";
+    }, 1000);
+});
+
 const canvas = document.getElementById('rocketCanvas'); //grabs the <canvas> element from the HTML file
 const ctx = canvas.getContext('2d'); // Displays a 2D version of it and uses ctx to actually display and draw the image on the canvas
 const img = new Image();

@@ -12,10 +12,16 @@
           rel="stylesheet">
 </head>
 <body>
-  <h1>Star Jump</h1>
-  <p id="starsGathered">0 Stars Gathered</p>
-  <canvas id="rocketCanvas"></canvas>
+  <div id="titleScreen"> <!-- a div is used to group and structure content -->
+      <h1>Star Jump</h1>
+      <button id="startButton">Start Game</button>
+  </div>
 
-  <script src="Logic.js"></script>
+  <div id="gameScreen">
+      <p id="starsGathered">0 Stars Gathered</p>
+      <canvas id="rocketCanvas"></canvas>
+      <script src="Logic.js"></script>
+  </div>
+
 </body>
 </html>

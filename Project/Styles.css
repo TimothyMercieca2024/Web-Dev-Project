@@ -2,7 +2,7 @@ h1 {
     font-family: "Pixelify Sans", sans-serif;
 }
 
-#rocketCanvas {
+#rocketCanvas { /* # is used to select and element by its id */
     cursor: pointer;
 }
 
@@ -24,6 +24,48 @@ h1{
 
 #starsGathered{
     color: darkgoldenrod;
+}
+
+#titleScreen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    display: flex; /* Uses flexbox to enter elements */
+    flex-direction: column; /* stacks child elements (title & button) vertically */
+    align-items: center;
+    justify-content: center; /* Center elements horizontally and vertically respectively*/
+    text-align: center;
+    z-index: 1000; /* Controls the stacking order of elements on a webpage. Made it 1000 to ensure it stays above everything else */
+}
+
+#titleScreen h1{
+    font-size: 60px;
+    font-family: "Pixelify Sans", sans-serif;
+    color: white;
+    margin-bottom: 20px; /* Adds space between title and game starting button*/
+}
+
+#startButton{
+    font-size: 30px;
+    padding: 15px 40px; /* Adds space in the button (top/bottom & left/right) */
+    background-color: darkgoldenrod;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px; /*Rounds the button corners */
+}
+
+#startButton:hover{
+    background-color: gold;
+    transform: scale(1.1); /*Makes button slightly larger upon hovering over it */
+    transition: 0.2s;
+}
+
+#gameContainer{
+    display: none; /* Hides the game until the button is pressed */
 }
 
 #rocketCanvas{
@@ -49,7 +91,6 @@ h1{
 }
 
 
-
 @keyframes animate {
     0%{
         transform: translateY(0) rotate(0deg);
@@ -64,3 +105,4 @@ h1{
         opacity: 0;
     }
 }
+
