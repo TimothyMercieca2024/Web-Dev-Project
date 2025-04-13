@@ -1,12 +1,15 @@
 body{
     margin: 0;
     padding: 0;
-    height: 100vh;
     background-color: skyblue;
     font-family: 'Chewy', cursive;
-    display:flex;
+}
+
+#StartScreen{
+    display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
 }
 
 #Start-Menu{
@@ -27,18 +30,70 @@ body{
 
 #Start-Button{
     font-size: 24px;
+    font-family: 'Chewy', cursive;
+    text-transform: uppercase;
     padding: 15px 40px;
     background-color: goldenrod;
     border: none;
     border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.2s;
-    animation: pulse 2s infinite ease-in-out;
+    animation: pulse 1.5s infinite ease-in-out;
 }
 
 #Start-Button:hover{
     background-color: goldenrod;
 }
+
+#game{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex: 1;
+
+    margin-left: 80px;
+    margin-top: -40px;
+}
+
+#game-right{
+    flex: 1;
+    text-align: left;
+}
+
+
+#duck{
+    width:300px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+#duck:active{
+    transform: scale(0.95) /* Squish effect */
+}
+
+#Quack-Rate{
+    font-size: 18px;
+    color: whitesmoke;
+    margin: 0;
+    font-family: 'Chewy', cursive;
+}
+
+#Quack-Counter{
+    font-size: 32px;
+    font-family: 'Chewy', cursive;
+    color: whitesmoke;
+    margin-bottom: 20px;
+}
+
 
 @keyframes pulse{
     0% { transform: scale(1); }

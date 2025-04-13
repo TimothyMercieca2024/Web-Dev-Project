@@ -8,11 +8,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="Start-Menu">
-      <h1>DUCK CLICKER</h1>
-      <button id="Start-Button">Start</button> <!-- Start is what's written on the button -->
+
+  <div id="StartScreen"> <!-- We did to only apply centering styles to StartScreen and not the whole page -->
+      <div id="Start-Menu">
+        <h1>DUCK CLICKER</h1>
+        <button id="Start-Button">Start</button> <!-- Start is what's written on the button -->
+      </div>
   </div>
 
+  <div id="game" style="display: none;">
+
+      <div id="game-left" >
+          <p id="Quack-Counter">Quacks: 0</p>
+          <p id="Quack-Rate">0 Quacks Per Second</p>
+          <img id="duck" src="DuckCutout.png" alt="Duck to click"> <!-- alt = .... is there as a failsafe just in case the img doesn't load to explain to the player what was supposed to be there -->
+      </div>
+
+      <div id="game-right">
+
+      </div>
+
+  </div>
 
   <script src="Logic.js"></script>
 </body>
