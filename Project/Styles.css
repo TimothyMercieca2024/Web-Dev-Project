@@ -59,21 +59,41 @@ body{
     align-items: center;
     height: 100vh;
     flex: 1;
-
     margin-left: 80px;
     margin-top: -40px;
+    pointer-events: none;
 }
 
-#game-right{
-    flex: 1;
-    text-align: left;
+#game-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+    min-width: 300px;
 }
 
+#Upgrade-Button-2{
+    font-family: 'Chewy', cursive;
+    font-size: 30px;
+    padding: 20px;
+    background-color: floralwhite;
+    color: black;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    width: 550px;
+    text-align: center;
+}
 
 #duck{
     width:300px;
     cursor: pointer;
     transition: transform 0.1s ease;
+    border: 2px solid red;
+    pointer-events: auto;
+    display:block;
 }
 
 #duck:active{
@@ -81,14 +101,14 @@ body{
 }
 
 #Quack-Rate{
-    font-size: 18px;
+    font-size: 30px;
     color: whitesmoke;
-    margin: 0;
+    margin-bottom: 100px;
     font-family: 'Chewy', cursive;
 }
 
 #Quack-Counter{
-    font-size: 32px;
+    font-size: 50px;
     font-family: 'Chewy', cursive;
     color: whitesmoke;
     margin-bottom: 20px;
