@@ -9,6 +9,7 @@ let Quacks = 0;
 document.getElementById("duck").addEventListener('click', function(){
     Quacks += QuackValue; // Add as many quacks as my current QuackValue allows
     document.getElementById("Quack-Counter").textContent = "Quacks: " + Quacks;
+    upgradeHighlighter();
 })
 
 
@@ -29,6 +30,8 @@ document.getElementById("Upgrade-Button-1").addEventListener ('click', function(
         document.getElementById("Upgrade-Desc-1").textContent = `+1 Quack Per Click`;
 
         document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
+
+        upgradeHighlighter();
     }
 });
 
@@ -54,6 +57,7 @@ document.getElementById("Upgrade-Button-2").addEventListener ('click', function(
         document.getElementById("Upgrade-Cost-2").textContent = `(Cost: ${UpgradeCost2} Quacks)`;
 
         updateQuackRate();
+        upgradeHighlighter();
     }
 });
 
@@ -62,9 +66,10 @@ document.getElementById("Upgrade-Button-2").addEventListener ('click', function(
 setInterval(() => {
     Quacks += QuacksPerSecond;
     document.getElementById("Quack-Counter").textContent = "Quacks: " + Quacks;
+    upgradeHighlighter();
 }, 1000);
 
-// 6. Upgrade Button 3 --> +5 quacks per click
+// 6. Upgrade Button 3 --> +5 Quacks per click
 let UpgradeCost3 = 250;
 
 document.getElementById("Upgrade-Button-3").addEventListener ('click', function(){
@@ -74,9 +79,61 @@ document.getElementById("Upgrade-Button-3").addEventListener ('click', function(
         UpgradeCost3 = Math.floor(UpgradeCost3 * 1.2);
 
         document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks}`;
-        document.getElementById("Click-Power").textContent = `Click Power: +${QuackValue}`;
+        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
         document.getElementById("Upgrade-Desc-3").textContent = `+5 Quacks Per Click`;
         document.getElementById("Upgrade-Cost-3").textContent = `(Cost: ${UpgradeCost3} Quacks)`;
+
+        upgradeHighlighter();
     }
 
-})
+});
+
+// 7. Upgrade Button 4 --> +7 Quacks per second
+let UpgradeCost4 = 1000;
+
+document.getElementById("Upgrade-Button-4").addEventListener ('click', function(){
+    if (Quacks >= UpgradeCost4){
+        Quacks -= UpgradeCost4;
+        QuacksPerSecond +=7;
+        UpgradeCost4 = Math.floor(UpgradeCost4 * 1.2);
+
+        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks}`;
+        document.getElementById("Upgrade-Desc-4").textContent = `+7 Quacks Per Second`;
+        document.getElementById("Upgrade-Cost-4").textContent = `(Cost: ${UpgradeCost4} Quacks)`;
+
+        updateQuackRate();
+        upgradeHighlighter();
+    }
+
+});
+
+// 8. Upgrade Highlighter
+function upgradeHighlighter(){
+    //Upgrade 1
+    if (Quacks >= UpgradeCost1){
+        document.getElementById("Upgrade-Button-1").classList.add("Affordable");
+    } else{
+        document.getElementById("Upgrade-Button-1").classList.remove("Affordable");
+    }
+
+    //Upgrade 2
+    if (Quacks >= UpgradeCost2){
+        document.getElementById("Upgrade-Button-2").classList.add("Affordable");
+    } else{
+        document.getElementById("Upgrade-Button-2").classList.remove("Affordable");
+    }
+
+    //Upgrade 3
+    if (Quacks >= UpgradeCost3){
+        document.getElementById("Upgrade-Button-3").classList.add("Affordable");
+    } else{
+        document.getElementById("Upgrade-Button-3").classList.remove("Affordable");
+    }
+
+    //Upgrade 4
+    if (Quacks >= UpgradeCost4){
+        document.getElementById("Upgrade-Button-4").classList.add("Affordable");
+    } else{
+        document.getElementById("Upgrade-Button-4").classList.remove("Affordable");
+    }
+}
