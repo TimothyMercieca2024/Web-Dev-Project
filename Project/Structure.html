@@ -19,14 +19,49 @@
   <div id="game" style="display: none;">
 
       <div id="game-left" >
-          <p id="Quack-Counter">Quacks: 0</p>
-          <p id="Quack-Rate">Quacks Per Second: 0</p>
+
+          <div id="Counters">
+              <p id="Quack-Counter">Quacks: 0</p>
+              <p id="Quack-Rate">Quacks Per Second: 0</p>
+          </div>
+
           <img id="duck" src="DuckCutout.png" alt="Duck to click"> <!-- alt = .... is there as a failsafe just in case the img doesn't load to explain to the player what was supposed to be there -->
       </div>
 
       <div id="game-right">
+
+          <div id="ClickPowerBox">
+
+              <p id="Click-Power">🦆 Click Power: +1</p>
+
+          </div>
+
           <div id="Upgrades">
-              <button id="Upgrade-Button-2">+1 Quack Per Second (Cost: 50 Quacks)</button>
+
+              <div class="Upgrade"> <!-- Upgrade 1 -->
+                  <button id="Upgrade-Button-1" class = "Upgrade-Button">
+                      <span class = "Upgrade-Title">🐣 Baby Quacker</span>
+                      <span id="Upgrade-Desc-1" class="Upgrade-Description">+1 Quack Per Click</span>
+                      <span id="Upgrade-Cost-1" class="Upgrade-Cost">(Cost: 20 Quacks)</span>
+                  </button>
+              </div>
+
+              <div class="Upgrade"> <!-- Upgrade 2 -->
+                  <button id="Upgrade-Button-2" class = "Upgrade-Button">
+                      <span class = "Upgrade-Title">🏋️‍♂️ Duck Trainer</span>
+                      <span id="Upgrade-Desc-2" class="Upgrade-Description">+1 Quack Per Second</span>
+                      <span id="Upgrade-Cost-2" class="Upgrade-Cost">(Cost: 50 Quacks)</span>
+                  </button>
+              </div>
+
+              <div class="Upgrade"> <!-- Upgrade 3 -->
+                  <button id="Upgrade-Button-3" class = "Upgrade-Button">
+                      <span class = "Upgrade-Title">💥 Mega Beak</span>
+                      <span id="Upgrade-Desc-3" class="Upgrade-Description">+5 Quacks Per Click</span>
+                      <span id="Upgrade-Cost-3" class="Upgrade-Cost">(Cost: 250 Quacks)</span>
+                  </button>
+              </div>
+
           </div>
 
       </div>
@@ -36,3 +71,5 @@
   <script src="Logic.js"></script>
 </body>
 </html>
+
+<!-- last upgrade is wise waddler -->

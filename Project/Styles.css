@@ -67,15 +67,48 @@ body{
 #game-right {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
+    padding: 10px;
+
+    align-items: center;
     gap: 20px;
-    min-width: 300px;
+    height: 100vh;
+    box-sizing: border-box;
+    justify-content: flex-start;
 }
 
-#Upgrade-Button-2{
+#ClickPowerBox{
+    background-color: floralwhite;
+    color: goldenrod;
     font-family: 'Chewy', cursive;
     font-size: 30px;
+    border: 3px solid goldenrod;
+    padding: 10px 20px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 300px;
+    margin: 15px auto 0 auto; /* Centers it horizontally and adds space below */
+}
+
+#Click-Power{
+    font-family: 'Chewy', cursive;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#Upgrades {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    height: 100%;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.Upgrade-Button{
+    font-family: 'Chewy', cursive;
     padding: 20px;
     background-color: floralwhite;
     color: black;
@@ -83,8 +116,36 @@ body{
     border-radius: 15px;
     box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
     cursor: pointer;
-    width: 550px;
+    width: 500px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Upgrade-Title{
+    font-size: 35px;
+    font-family: 'Chewy', cursive;
+    color: black;
+    font-weight: bold;
+    margin: 0;
+}
+
+.Upgrade-Description{
+    font-size: 25px;
+    margin:0;
+}
+
+.Upgrade-Cost{
+    font-size: 20px;
+    color: gray;
+    margin:0;
+}
+
+.Upgrade {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 #duck{
@@ -100,20 +161,28 @@ body{
     transform: scale(0.95) /* Squish effect */
 }
 
-#Quack-Rate{
-    font-size: 30px;
-    color: whitesmoke;
-    margin-bottom: 100px;
-    font-family: 'Chewy', cursive;
+#Counters{
+    position: absolute;
+    top: 80px;
+    transform: translateY(-40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #Quack-Counter{
     font-size: 50px;
     font-family: 'Chewy', cursive;
     color: whitesmoke;
-    margin-bottom: 20px;
+    margin: 0;
 }
 
+#Quack-Rate{
+    font-size: 30px;
+    font-family: 'Chewy', cursive;
+    color: whitesmoke;
+    margin: 0;
+}
 
 @keyframes pulse{
     0% { transform: scale(1); }
