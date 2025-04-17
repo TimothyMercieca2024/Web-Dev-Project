@@ -1,14 +1,31 @@
 // 1. Start Button Functionality
-document.getElementById("Start-Button").addEventListener ('click', function(){ // tells the browser, when the start button is clicked, do this below stuff
-    document.getElementById("StartScreen").style.display = "none"; // Hides the main menu
-    document.getElementById("game").style.display = "flex"; // Shows the hidden game screen with duck on it
-})
+document.getElementById("Start-Button").addEventListener("click", function () {
+    // Hide the start screen
+    document.getElementById("StartScreen").style.display = "none";
+
+    // Show the main game area
+    document.getElementById("game").style.display = "flex";
+
+    // After start is pressed, show the following UI elements:
+    document.getElementById("Prestige-Button").style.display = "block";
+    document.getElementById("Wipe-Button").style.display = "block";
+    document.getElementById("Prestige-Multiplier").style.display = "block";
+    document.getElementById("ResetPlusCounter").style.display = "block";
+
+    // Keep Save Notification hidden until triggered by saving
+    document.getElementById("Save-Notification").style.display = "none";
+
+    // Start autosaving only after the game has begun
+    setInterval(saveGame, 5000);
+
+});
+
 
 // 2. Initialisation of Quacks and of Duck Click Logic
 let Quacks = 0;
 document.getElementById("duck").addEventListener('click', function(){
-    Quacks += QuackValue; // Add as many quacks as my current QuackValue allows
-    document.getElementById("Quack-Counter").textContent = "Quacks: " + Quacks;
+    Quacks += QuackValue * PrestigeMultiplier; // Add as many quacks as my current QuackValue allows
+    document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
     upgradeHighlighter();
 })
 
@@ -23,7 +40,7 @@ document.getElementById("Upgrade-Button-1").addEventListener ('click', function(
         QuackValue++;
         UpgradeCost1 = Math.floor(UpgradeCost1 * 1.2);
 
-        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks}`;
+        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
 
         document.getElementById("Upgrade-Cost-1").textContent = `(Cost: ${UpgradeCost1} Quacks)`;
 
@@ -50,7 +67,7 @@ document.getElementById("Upgrade-Button-2").addEventListener ('click', function(
         QuacksPerSecond += 1;
         UpgradeCost2 = Math.floor(UpgradeCost2 * 1.2); //Cost increases each time
 
-        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks}`; //Updates the total quacks display instantly after spending
+        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
 
         document.getElementById("Upgrade-Desc-2").textContent = `+1 Quack Per Second`;
 
@@ -64,10 +81,11 @@ document.getElementById("Upgrade-Button-2").addEventListener ('click', function(
 
 // 5. Passive Income --> Adds Quacks Per Second Every Second
 setInterval(() => {
-    Quacks += QuacksPerSecond;
-    document.getElementById("Quack-Counter").textContent = "Quacks: " + Quacks;
+    Quacks += QuacksPerSecond * PrestigeMultiplier;
+    document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
     upgradeHighlighter();
 }, 1000);
+
 
 // 6. Upgrade Button 3 --> +5 Quacks per click
 let UpgradeCost3 = 250;
@@ -78,7 +96,7 @@ document.getElementById("Upgrade-Button-3").addEventListener ('click', function(
         QuackValue += 5;
         UpgradeCost3 = Math.floor(UpgradeCost3 * 1.2);
 
-        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks}`;
+        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
         document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
         document.getElementById("Upgrade-Desc-3").textContent = `+5 Quacks Per Click`;
         document.getElementById("Upgrade-Cost-3").textContent = `(Cost: ${UpgradeCost3} Quacks)`;
@@ -97,7 +115,7 @@ document.getElementById("Upgrade-Button-4").addEventListener ('click', function(
         QuacksPerSecond +=7;
         UpgradeCost4 = Math.floor(UpgradeCost4 * 1.2);
 
-        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks}`;
+        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
         document.getElementById("Upgrade-Desc-4").textContent = `+7 Quacks Per Second`;
         document.getElementById("Upgrade-Cost-4").textContent = `(Cost: ${UpgradeCost4} Quacks)`;
 
@@ -107,7 +125,44 @@ document.getElementById("Upgrade-Button-4").addEventListener ('click', function(
 
 });
 
-// 8. Upgrade Highlighter
+// 8. Upgrade Button 5 --> + 20 Quacks per Click
+let UpgradeCost5 = 3500;
+
+document.getElementById("Upgrade-Button-5").addEventListener ('click', function(){
+    if (Quacks >= UpgradeCost5){
+        Quacks -= UpgradeCost5;
+        QuackValue += 20;
+        UpgradeCost5 = Math.floor(UpgradeCost5 * 1.2);
+
+        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
+        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
+        document.getElementById("Upgrade-Desc-5").textContent = `+20 Quacks Per Click`;
+        document.getElementById("Upgrade-Cost-5").textContent = `(Cost: ${UpgradeCost5} Quacks)`;
+
+        upgradeHighlighter();
+    }
+})
+
+//9. Upgrade Button 6 --> + 55 Quacks Per Second
+let UpgradeCost6 = 10000;
+
+document.getElementById("Upgrade-Button-6").addEventListener ('click', function(){
+    if (Quacks >= UpgradeCost6){
+        Quacks -= UpgradeCost6;
+        QuacksPerSecond += 55;
+        UpgradeCost6 = Math.floor(UpgradeCost6 * 1.2);
+
+        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
+        document.getElementById("Upgrade-Desc-6").textContent = `+55 Quacks Per Second`;
+        document.getElementById("Upgrade-Cost-6").textContent = `(Cost: ${UpgradeCost6} Quacks)`;
+
+        updateQuackRate();
+        upgradeHighlighter();
+    }
+})
+
+
+// 10. Upgrade Highlighter
 function upgradeHighlighter(){
     //Upgrade 1
     if (Quacks >= UpgradeCost1){
@@ -136,4 +191,253 @@ function upgradeHighlighter(){
     } else{
         document.getElementById("Upgrade-Button-4").classList.remove("Affordable");
     }
+
+    //Upgrade 5
+    if (Quacks >= UpgradeCost5){
+        document.getElementById("Upgrade-Button-5").classList.add("Affordable");
+    } else{
+        document.getElementById("Upgrade-Button-5").classList.remove("Affordable");
+    }
+
+    if (Quacks >= UpgradeCost6){
+        document.getElementById("Upgrade-Button-6").classList.add("Affordable");
+    } else{
+        document.getElementById("Upgrade-Button-6").classList.remove("Affordable");
+    }
 }
+
+
+
+// 11. Functions to Save Game Data:
+
+// a. Returns the current game state to be saved
+function getGameState() {
+    return {
+        quacks: Quacks,
+        quackValue: QuackValue,
+        quacksPerSecond: QuacksPerSecond,
+        prestigeMultiplier: PrestigeMultiplier,
+        resetCount: ResetCount,
+        upgradeCosts: {
+            upgrade1: UpgradeCost1,
+            upgrade2: UpgradeCost2,
+            upgrade3: UpgradeCost3,
+            upgrade4: UpgradeCost4,
+            upgrade5: UpgradeCost5,
+            upgrade6: UpgradeCost6,
+        }
+    };
+}
+
+// b. Function that sends the current game state to the server to be saved
+function saveGame() {
+    const gameState = getGameState(); // Get current state
+    console.log("Sending game state to server:", gameState); // Debug
+
+    fetch('http://localhost:3000/save', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', // Tells the server we're sending JSON
+        },
+        body: JSON.stringify(gameState) // Convert the object to a string for sending
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to save game');
+            }
+            console.log('✅ Game saved successfully!');
+            showSaveNotification();
+        })
+        .catch(error => {
+            console.error('❌ Error saving game:', error);
+        });
+}
+
+// c. Function to load the saved game state from the server
+function loadGame() {
+    fetch('http://localhost:3000/load')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load game');
+            }
+            return response.json();
+        })
+        .then(savedGame => {
+            if (savedGame) {
+                console.log('Loaded saved game:', savedGame); // Debug
+                applyGameState(savedGame);
+                console.log('✅ Game loaded successfully!');
+            } else {
+                console.warn("⚠️ No saved game found. Starting fresh.");
+            }
+        })
+        .catch(error => {
+            console.error('❌ Error loading game:', error);
+        });
+}
+
+// d. Applies loaded game data to current game session
+function applyGameState(saved) {
+    Quacks = saved.quacks || 0;
+    QuackValue = saved.quackValue || 1;
+    QuacksPerSecond = saved.quacksPerSecond || 0;
+    PrestigeMultiplier = saved.prestigeMultiplier || 1;
+    ResetCount = saved.resetCount || 0;
+
+    UpgradeCost1 = saved.upgradeCosts?.upgrade1 || 20;
+    UpgradeCost2 = saved.upgradeCosts?.upgrade2 || 50;
+    UpgradeCost3 = saved.upgradeCosts?.upgrade3 || 250;
+    UpgradeCost4 = saved.upgradeCosts?.upgrade4 || 1000;
+    UpgradeCost5 = saved.upgradeCosts?.upgrade5 || 3500;
+    UpgradeCost6 = saved.upgradeCosts?.upgrade6 || 10000;
+
+    // Update UI
+    document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
+    document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
+    document.getElementById("Quack-Rate").textContent = `Quacks Per Second: ${QuacksPerSecond}`;
+    document.getElementById("ResetPlusCounter").textContent = `Reset+ Uses: ${ResetCount}`;
+    document.getElementById("Prestige-Multiplier").textContent = `Bonus Multiplier: x${PrestigeMultiplier.toFixed(1)}`;
+
+
+    // Update buttons with new upgrade info
+    document.getElementById("Upgrade-Cost-1").textContent = `(Cost: ${UpgradeCost1} Quacks)`;
+    document.getElementById("Upgrade-Cost-2").textContent = `(Cost: ${UpgradeCost2} Quacks)`;
+    document.getElementById("Upgrade-Cost-3").textContent = `(Cost: ${UpgradeCost3} Quacks)`;
+    document.getElementById("Upgrade-Cost-4").textContent = `(Cost: ${UpgradeCost4} Quacks)`;
+    document.getElementById("Upgrade-Cost-5").textContent = `(Cost: ${UpgradeCost5} Quacks)`;
+    document.getElementById("Upgrade-Cost-6").textContent = `(Cost: ${UpgradeCost6} Quacks)`;
+
+    // Highlight affordable upgrades
+    updateQuackRate();
+    upgradeHighlighter();
+}
+
+// e. Load the game state as soon as the page loads
+window.addEventListener('load', function () {
+    loadGame();
+});
+
+//f. Shows "Saving..." message briefly in top-left corner
+function showSaveNotification(){
+    const saveNotif = document.getElementById("Save-Notification");
+    saveNotif.style.display = "block";
+
+    setTimeout(() => {
+        saveNotif.style.display = "none";
+    }, 800); // hides after 0.8 seconds
+}
+
+
+// 12. Reset+ Button
+document.getElementById("Prestige-Button").addEventListener("click", function () {
+    console.log("Reset+ button clicked");
+
+    if (Quacks < 50000) {
+        showPopupMessage("🦆 You need 50,000 Quacks to activate Reset+ and earn a multiplier bonus!");
+        return;
+    }
+
+    showConfirmation("Are you sure you want to use Reset+ and boost your multiplier?", () => {
+        // 1. Update bonus and counters
+        PrestigeMultiplier += 0.1;
+        ResetCount++;
+
+        // 2. Reset core game values
+        Quacks = 0;
+        QuackValue = 1;
+        QuacksPerSecond = 0;
+
+        UpgradeCost1 = 20;
+        UpgradeCost2 = 50;
+        UpgradeCost3 = 250;
+        UpgradeCost4 = 1000;
+        UpgradeCost5 = 3500;
+        UpgradeCost6 = 10000;
+
+        // 3. Update UI
+        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
+        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
+        document.getElementById("Quack-Rate").textContent = `Quacks Per Second: ${QuacksPerSecond}`;
+        document.getElementById("Prestige-Multiplier").textContent = `Bonus Multiplier: x${PrestigeMultiplier.toFixed(1)}`;
+        document.getElementById("ResetPlusCounter").textContent = `Reset+ Uses: ${ResetCount}`;
+
+        // 4. Apply state + re-show buttons
+        applyGameState(getGameState());
+        document.getElementById("Prestige-Button").style.display = "block";
+        document.getElementById("Wipe-Button").style.display = "block";
+
+        // 5. Notify and save
+        showPopupMessage(`🦆 Reset+ complete! All progress reset, but your bonus is now x${PrestigeMultiplier.toFixed(1)}!`);
+        saveGame();
+    });
+});
+
+
+// 13.Popup Message
+function showPopupMessage(message) {
+    const popup = document.getElementById("Popup-Message");
+    popup.textContent = message;
+    popup.style.display = "block";
+
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 2500); // hide after 2.5 seconds
+}
+
+//14. Confirmation Popup Message
+function showConfirmation(message, onConfirm) {
+    const popup = document.getElementById("Confirmation-Popup");
+    const messageElement = document.getElementById("Confirmation-Message");
+    const yesBtn = document.getElementById("Confirm-Yes");
+    const noBtn = document.getElementById("Confirm-No");
+
+    messageElement.textContent = message;
+    popup.style.display = "flex";
+
+    // Clear previous clicks and set new listener
+    yesBtn.onclick = () => {
+        popup.style.display = "none";
+        onConfirm(); // Run the action they confirmed
+    };
+
+    noBtn.onclick = () => {
+        popup.style.display = "none"; // Just close it
+    };
+}
+
+
+
+// 15. Hard Reset button
+document.getElementById("Wipe-Button").addEventListener("click", function () {
+    showConfirmation("Are you sure you want to completely wipe ALL progress?", () => {
+
+        // Reset everything
+        Quacks = 0;
+        QuackValue = 1;
+        QuacksPerSecond = 0;
+        PrestigeMultiplier = 1;
+        ResetCount = 0;
+
+        UpgradeCost1 = 20;
+        UpgradeCost2 = 50;
+        UpgradeCost3 = 250;
+        UpgradeCost4 = 1000;
+        UpgradeCost5 = 3500;
+        UpgradeCost6 = 10000;
+
+        // Update UI
+        applyGameState(getGameState());
+        document.getElementById("Prestige-Button").style.display = "block";
+        document.getElementById("Wipe-Button").style.display = "block";
+        document.getElementById("Prestige-Multiplier").textContent = `Bonus Multiplier: x1.0`;
+        document.getElementById("ResetPlusCounter").textContent = `Reset+ Uses: 0`;
+
+        // Notify and save
+        showPopupMessage("🧼 Hard Reset complete. Starting fresh!");
+        saveGame();
+    });
+});
+
+
+// 16. Reset Counter
+let ResetCount = 0;
