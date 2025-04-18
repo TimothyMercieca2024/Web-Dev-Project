@@ -143,7 +143,7 @@ document.getElementById("Upgrade-Button-5").addEventListener ('click', function(
     }
 })
 
-//9. Upgrade Button 6 --> + 55 Quacks Per Second
+// 9. Upgrade Button 6 --> + 55 Quacks Per Second
 let UpgradeCost6 = 10000;
 
 document.getElementById("Upgrade-Button-6").addEventListener ('click', function(){
@@ -161,8 +161,46 @@ document.getElementById("Upgrade-Button-6").addEventListener ('click', function(
     }
 })
 
+// 10. Upgrade button 7 --> 150 quacks per click
+let UpgradeCost7 = 75000;
 
-// 10. Upgrade Highlighter
+document.getElementById("Upgrade-Button-7").addEventListener('click', function () {
+    if (Quacks >= UpgradeCost7) {
+        Quacks -= UpgradeCost7;
+        QuackValue += 150;
+        UpgradeCost7 = Math.floor(UpgradeCost7 * 1.2);
+
+        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
+        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
+        document.getElementById("Upgrade-Desc-7").textContent = `+150 Quacks Per Click`;
+        document.getElementById("Upgrade-Cost-7").textContent = `(Cost: ${UpgradeCost7} Quacks)`;
+
+        upgradeHighlighter();
+    }
+});
+
+// 11. Upgrade 8 --> + 500 quacks per second
+let UpgradeCost8 = 500000;
+
+document.getElementById("Upgrade-Button-8").addEventListener('click', function () {
+    if (Quacks >= UpgradeCost8) {
+        Quacks -= UpgradeCost8;
+        QuacksPerSecond += 1000;
+        UpgradeCost8 = Math.floor(UpgradeCost8 * 1.2);
+
+        document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
+        document.getElementById("Upgrade-Desc-8").textContent = `+1000 Quacks Per Second`;
+        document.getElementById("Upgrade-Cost-8").textContent = `(Cost: ${UpgradeCost8} Quacks)`;
+
+        updateQuackRate();
+        upgradeHighlighter();
+    }
+});
+
+
+
+
+// 12. Upgrade Highlighter
 function upgradeHighlighter(){
     //Upgrade 1
     if (Quacks >= UpgradeCost1){
@@ -198,17 +236,32 @@ function upgradeHighlighter(){
     } else{
         document.getElementById("Upgrade-Button-5").classList.remove("Affordable");
     }
-
+    //Upgrade 6
     if (Quacks >= UpgradeCost6){
         document.getElementById("Upgrade-Button-6").classList.add("Affordable");
     } else{
         document.getElementById("Upgrade-Button-6").classList.remove("Affordable");
     }
+
+    //Upgrade 7
+    if (Quacks >= UpgradeCost7){
+        document.getElementById("Upgrade-Button-7").classList.add("Affordable");
+    } else{
+        document.getElementById("Upgrade-Button-7").classList.remove("Affordable");
+    }
+
+    //Upgrade 8
+    if (Quacks >= UpgradeCost8) {
+        document.getElementById("Upgrade-Button-8").classList.add("Affordable");
+    } else {
+        document.getElementById("Upgrade-Button-8").classList.remove("Affordable");
+    }
+
 }
 
 
 
-// 11. Functions to Save Game Data:
+// 13. Functions to Save Game Data:
 
 // a. Returns the current game state to be saved
 function getGameState() {
@@ -225,6 +278,8 @@ function getGameState() {
             upgrade4: UpgradeCost4,
             upgrade5: UpgradeCost5,
             upgrade6: UpgradeCost6,
+            upgrade7: UpgradeCost7,
+            upgrade8: UpgradeCost8,
         }
     };
 }
@@ -290,6 +345,9 @@ function applyGameState(saved) {
     UpgradeCost4 = saved.upgradeCosts?.upgrade4 || 1000;
     UpgradeCost5 = saved.upgradeCosts?.upgrade5 || 3500;
     UpgradeCost6 = saved.upgradeCosts?.upgrade6 || 10000;
+    UpgradeCost7 = saved.upgradeCosts?.upgrade7 || 75000;
+    UpgradeCost8 = saved.upgradeCosts?.upgrade8 || 500000;
+
 
     // Update UI
     document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
@@ -306,6 +364,10 @@ function applyGameState(saved) {
     document.getElementById("Upgrade-Cost-4").textContent = `(Cost: ${UpgradeCost4} Quacks)`;
     document.getElementById("Upgrade-Cost-5").textContent = `(Cost: ${UpgradeCost5} Quacks)`;
     document.getElementById("Upgrade-Cost-6").textContent = `(Cost: ${UpgradeCost6} Quacks)`;
+    document.getElementById("Upgrade-Cost-7").textContent = `(Cost: ${UpgradeCost7} Quacks)`;
+    document.getElementById("Upgrade-Cost-8").textContent = `(Cost: ${UpgradeCost8} Quacks)`;
+
+
 
     // Highlight affordable upgrades
     updateQuackRate();
@@ -328,7 +390,7 @@ function showSaveNotification(){
 }
 
 
-// 12. Reset+ Button
+// 14. Reset+ Button
 document.getElementById("Prestige-Button").addEventListener("click", function () {
     console.log("Reset+ button clicked");
 
@@ -353,6 +415,8 @@ document.getElementById("Prestige-Button").addEventListener("click", function ()
         UpgradeCost4 = 1000;
         UpgradeCost5 = 3500;
         UpgradeCost6 = 10000;
+        UpgradeCost7 = 75000;
+        UpgradeCost8 = 500000;
 
         // 3. Update UI
         document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
@@ -373,7 +437,7 @@ document.getElementById("Prestige-Button").addEventListener("click", function ()
 });
 
 
-// 13.Popup Message
+// 15.Popup Message
 function showPopupMessage(message) {
     const popup = document.getElementById("Popup-Message");
     popup.textContent = message;
@@ -384,7 +448,7 @@ function showPopupMessage(message) {
     }, 2500); // hide after 2.5 seconds
 }
 
-//14. Confirmation Popup Message
+// 16. Confirmation Popup Message
 function showConfirmation(message, onConfirm) {
     const popup = document.getElementById("Confirmation-Popup");
     const messageElement = document.getElementById("Confirmation-Message");
@@ -407,7 +471,7 @@ function showConfirmation(message, onConfirm) {
 
 
 
-// 15. Hard Reset button
+// 17. Hard Reset button
 document.getElementById("Wipe-Button").addEventListener("click", function () {
     showConfirmation("Are you sure you want to completely wipe ALL progress?", () => {
 
@@ -424,6 +488,8 @@ document.getElementById("Wipe-Button").addEventListener("click", function () {
         UpgradeCost4 = 1000;
         UpgradeCost5 = 3500;
         UpgradeCost6 = 10000;
+        UpgradeCost7 = 75000;
+        UpgradeCost8 = 500000;
 
         // Update UI
         applyGameState(getGameState());
@@ -439,5 +505,5 @@ document.getElementById("Wipe-Button").addEventListener("click", function () {
 });
 
 
-// 16. Reset Counter
+// 18. Reset Counter
 let ResetCount = 0;
