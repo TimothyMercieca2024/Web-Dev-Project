@@ -331,7 +331,7 @@ function loadGame() {
         });
 }
 
-// d. Applies loaded game data to current game session
+// d. Applies loaded game data to the current game session
 function applyGameState(saved) { // Saved represents the saved game data object
     Quacks = saved.quacks || 0;
     QuackValue = saved.quackValue || 1;
@@ -379,7 +379,7 @@ function applyGameState(saved) { // Saved represents the saved game data object
     }
 
 
-    // Restore duck image immediately on reload
+    // Restores the duck image immediately on reload
     const duck = document.getElementById("duck");
     if (duck && duckMilestones[currentDuckMilestone]) {
         duck.src = duckMilestones[currentDuckMilestone].image;
@@ -398,7 +398,7 @@ window.addEventListener('load', function () {
     loadGame();
 });
 
-//f. Shows "Saving..." message briefly in top-left corner
+//f. Shows "Saving..." message briefly in the top-left corner
 function showSaveNotification(){
     const saveNotif = document.getElementById("Save-Notification");
     saveNotif.style.display = "block";
@@ -447,7 +447,7 @@ document.getElementById("Prestige-Button").addEventListener("click", function ()
         const duck = document.getElementById("duck");
         duck.style.opacity = 0;
         setTimeout(() => {
-            duck.src = "DuckCutout.png"; // ← Replace with your base duck image filename
+            duck.src = "Images/DuckCutout.png"; // ← Replace with your base duck image filename
             duck.style.opacity = 1;
         }, 200);
 
@@ -535,7 +535,7 @@ document.getElementById("Wipe-Button").addEventListener("click", function () {
         const duck = document.getElementById("duck");
         duck.style.opacity = 0;
         setTimeout(() => {
-            duck.src = "DuckCutout.png"; // ← Replace with your base duck image filename
+            duck.src = "Images/DuckCutout.png"; // ← Replace with your base duck image filename
             duck.style.opacity = 1;
         }, 200);
 
@@ -568,7 +568,7 @@ const progressFill = document.getElementById("ProgressFill");
 const milestoneTargetText = document.getElementById("Milestone-Target");
 const currentQuacksText = document.getElementById("Current-Quacks");
 
-// Set milestone target in the UI
+// Sets the milestone target in the UI
 function updateProgressBar() {
     if (!progressFill || !currentQuacksText) return;
 
@@ -621,11 +621,11 @@ function updateQuackUI() {
 
 //20. Different milestones = change in image
 const duckMilestones = [
-    { threshold: 20000, image: "United-Duck.png" },
-    { threshold: 100000, image: "Dumbo-Duck.png" },
-    { threshold: 750000, image: "BigBen-Duck.png" },
-    { threshold: 3500000, image: "Car-Duck.png" },
-    { threshold: 30000000, image: "Queen-Duck.png" }
+    { threshold: 20000, image: "Images/United-Duck.png" },
+    { threshold: 100000, image: "Images/Dumbo-Duck.png" },
+    { threshold: 750000, image: "Images/BigBen-Duck.png" },
+    { threshold: 3500000, image: "Images/Car-Duck.png" },
+    { threshold: 30000000, image: "Images/Queen-Duck.png" }
 ];
 
 let currentDuckMilestone = -1;
@@ -636,7 +636,7 @@ function updateDuckSkin() {
         if (totalQuacksEarned >= duckMilestones[i].threshold && currentDuckMilestone < i) {
             currentDuckMilestone = i;
 
-            // Update the progress bar to reflect new milestone range
+            // Update the progress bar to reflect the new milestone range
             updateProgressBar();
 
             const duck = document.getElementById("duck");
