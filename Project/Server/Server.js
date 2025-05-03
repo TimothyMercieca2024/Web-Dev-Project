@@ -6,6 +6,8 @@ const cors = require('cors');
 const fs = require('fs');
 const app = express();
 const PORT = 3000;
+const path = require('path');
+const saveFilePath = path.join(__dirname, 'savedGame.json');
 
 app.use(cors());
 
@@ -22,7 +24,7 @@ app.post('/save', (req, res) => {
         return res.status(400).json({ message: 'No game state provided.' });
     }
 
-    fs.writeFile('savedGame.json', JSON.stringify(gameState, null, 2), (err) => {
+    fs.writeFile(saveFilePath, JSON.stringify(gameState, null, 2), (err) => {
         if (err) {
             console.error('❌ Error saving game:', err);
             return res.status(500).json({ message: 'Failed to save game.' });
@@ -37,7 +39,7 @@ app.post('/save', (req, res) => {
 
 // 3. Route to Load Game Data (GET /load)
 app.get('/load', (req, res) => {
-    fs.readFile('savedGame.json', 'utf8', (err, data) => {
+    fs.readFile(saveFilePath,'utf8', (err, data) => {
         if (err || !data) {
             console.error('❌ Error loading game data:', err);
             return res.status(404).json({ error: 'No game data found' });
