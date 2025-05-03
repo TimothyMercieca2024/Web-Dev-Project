@@ -45,7 +45,7 @@ document.getElementById("Upgrade-Button-1").addEventListener ('click', function(
 
         document.getElementById("Upgrade-Desc-1").textContent = `+1 Quack Per Click`;
 
-        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
+        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue.toLocaleString()}`;
 
         upgradeHighlighter();
     }
@@ -57,7 +57,7 @@ let QuacksPerSecond = 0;
 let UpgradeCost2 = 50;
 
 function updateQuackRate(){
-    document.getElementById("Quack-Rate").textContent = " Quacks Per Second: " +  QuacksPerSecond ;
+    document.getElementById("Quack-Rate").textContent = " Quacks Per Second: " +  QuacksPerSecond.toLocaleString();
 }
 
 document.getElementById("Upgrade-Button-2").addEventListener ('click', function(){
@@ -95,7 +95,7 @@ document.getElementById("Upgrade-Button-3").addEventListener ('click', function(
         UpgradeCost3 = Math.floor(UpgradeCost3 * 1.2);
 
         updateQuackUI();
-        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
+        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue.toLocaleString()}`;
         document.getElementById("Upgrade-Desc-3").textContent = `+5 Quacks Per Click`;
         document.getElementById("Upgrade-Cost-3").textContent = `(Cost: ${UpgradeCost3.toLocaleString()} Quacks)`;
 
@@ -133,7 +133,7 @@ document.getElementById("Upgrade-Button-5").addEventListener ('click', function(
         UpgradeCost5 = Math.floor(UpgradeCost5 * 1.2);
 
         updateQuackUI();
-        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
+        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue.toLocaleString()}`;
         document.getElementById("Upgrade-Desc-5").textContent = `+20 Quacks Per Click`;
         document.getElementById("Upgrade-Cost-5").textContent = `(Cost: ${UpgradeCost5.toLocaleString()} Quacks)`;
 
@@ -169,7 +169,7 @@ document.getElementById("Upgrade-Button-7").addEventListener('click', function (
         UpgradeCost7 = Math.floor(UpgradeCost7 * 1.2);
 
         updateQuackUI();
-        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
+        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue.toLocaleString()}`;
         document.getElementById("Upgrade-Desc-7").textContent = `+150 Quacks Per Click`;
         document.getElementById("Upgrade-Cost-7").textContent = `(Cost: ${UpgradeCost7.toLocaleString()} Quacks)`;
 
@@ -177,7 +177,7 @@ document.getElementById("Upgrade-Button-7").addEventListener('click', function (
     }
 });
 
-// 11. Upgrade 8 --> + 500 quacks per second
+// 11. Upgrade 8 --> + 1,000 quacks per second
 let UpgradeCost8 = 500000;
 
 document.getElementById("Upgrade-Button-8").addEventListener('click', function () {
@@ -195,10 +195,26 @@ document.getElementById("Upgrade-Button-8").addEventListener('click', function (
     }
 });
 
+// 12. Upgrade 9 --> + 3,500 quacks per click
+let UpgradeCost9 = 2000000;
+
+document.getElementById("Upgrade-Button-9").addEventListener('click', function () {
+    if (Quacks >= UpgradeCost9) {
+        Quacks -= UpgradeCost9;
+        QuackValue += 3500;
+        UpgradeCost9 = Math.floor(UpgradeCost9 * 1.2);
+
+        updateQuackUI();
+        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue.toLocaleString()}`;
+        document.getElementById("Upgrade-Desc-9").textContent = `+3,500 Quacks Per Click`;
+        document.getElementById("Upgrade-Cost-9").textContent = `(Cost: ${UpgradeCost9.toLocaleString()} Quacks)`;
+
+        upgradeHighlighter();
+    }
+});
 
 
-
-// 12. Upgrade Highlighter
+// 13. Upgrade Highlighter
 function upgradeHighlighter(){
     //Upgrade 1
     if (Quacks >= UpgradeCost1){
@@ -255,11 +271,19 @@ function upgradeHighlighter(){
         document.getElementById("Upgrade-Button-8").classList.remove("Affordable");
     }
 
+    //Upgrade 9
+    if (Quacks >= UpgradeCost9) {
+        document.getElementById("Upgrade-Button-9").classList.add("Affordable");
+    } else {
+        document.getElementById("Upgrade-Button-9").classList.remove("Affordable");
+    }
+
+
 }
 
 
 
-// 13. Functions to Save Game Data:
+// 14. Functions to Save Game Data:
 
 // a. Returns the current game state to be saved
 function getGameState() {
@@ -278,6 +302,7 @@ function getGameState() {
             upgrade6: UpgradeCost6,
             upgrade7: UpgradeCost7,
             upgrade8: UpgradeCost8,
+            upgrade9: UpgradeCost9,
         },
         totalQuacksEarned,
         currentDuckMilestone
@@ -347,12 +372,13 @@ function applyGameState(saved) { // Saved represents the saved game data object
     UpgradeCost6 = saved.upgradeCosts?.upgrade6 || 10000;
     UpgradeCost7 = saved.upgradeCosts?.upgrade7 || 75000;
     UpgradeCost8 = saved.upgradeCosts?.upgrade8 || 500000;
+    UpgradeCost9 = saved.upgradeCosts?.upgrade9 || 2000000;
 
 
     // Update UI
     updateQuackUI();
-    document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
-    document.getElementById("Quack-Rate").textContent = `Quacks Per Second: ${QuacksPerSecond}`;
+    document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue.toLocaleString()}`;
+    document.getElementById("Quack-Rate").textContent = `Quacks Per Second: ${QuacksPerSecond.toLocaleString}`;
     document.getElementById("ResetPlusCounter").textContent = `Reset+ Uses: ${ResetCount}`;
     document.getElementById("Prestige-Multiplier").textContent = `Bonus Multiplier: x${PrestigeMultiplier.toFixed(1)}`;
 
@@ -366,6 +392,7 @@ function applyGameState(saved) { // Saved represents the saved game data object
     document.getElementById("Upgrade-Cost-6").textContent = `(Cost: ${UpgradeCost6.toLocaleString()} Quacks)`;
     document.getElementById("Upgrade-Cost-7").textContent = `(Cost: ${UpgradeCost7.toLocaleString()} Quacks)`;
     document.getElementById("Upgrade-Cost-8").textContent = `(Cost: ${UpgradeCost8.toLocaleString()} Quacks)`;
+    document.getElementById("Upgrade-Cost-9").textContent = `(Cost: ${UpgradeCost9.toLocaleString()} Quacks)`;
 
     // Restore the total quacks earned and current duck stage from saved data (for milestone tracking)
     if (saved.totalQuacksEarned !== undefined) {
@@ -409,7 +436,7 @@ function showSaveNotification(){
 }
 
 
-// 14. Reset+ Button
+// 15. Reset+ Button
 document.getElementById("Prestige-Button").addEventListener("click", function () {
     console.log("Reset+ button clicked");
 
@@ -436,6 +463,7 @@ document.getElementById("Prestige-Button").addEventListener("click", function ()
         UpgradeCost6 = 10000;
         UpgradeCost7 = 75000;
         UpgradeCost8 = 500000;
+        UpgradeCost9 = 2000000
 
         // Reset event progress
         totalQuacksEarned = 0;
@@ -454,7 +482,7 @@ document.getElementById("Prestige-Button").addEventListener("click", function ()
 
         // 3. Update UI
         document.getElementById("Quack-Counter").textContent = `Quacks: ${Quacks.toFixed(0)}`;
-        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue}`;
+        document.getElementById("Click-Power").textContent = `🦆 Click Power: +${QuackValue.toLocaleString()}`;
         document.getElementById("Quack-Rate").textContent = `Quacks Per Second: ${QuacksPerSecond}`;
         document.getElementById("Prestige-Multiplier").textContent = `Bonus Multiplier: x${PrestigeMultiplier.toFixed(1)}`;
         document.getElementById("ResetPlusCounter").textContent = `Reset+ Uses: ${ResetCount}`;
@@ -471,7 +499,7 @@ document.getElementById("Prestige-Button").addEventListener("click", function ()
 });
 
 
-// 15.Popup Message
+// 16.Popup Message
 function showPopupMessage(message) {
     const popup = document.getElementById("Popup-Message");
     popup.textContent = message;
@@ -482,7 +510,7 @@ function showPopupMessage(message) {
     }, 2500); // hide after 2.5 seconds
 }
 
-// 16. Confirmation Popup Message
+// 17. Confirmation Popup Message
 function showConfirmation(message, onConfirm) {
     const popup = document.getElementById("Confirmation-Popup");
     const messageElement = document.getElementById("Confirmation-Message");
@@ -492,7 +520,7 @@ function showConfirmation(message, onConfirm) {
     messageElement.textContent = message;
     popup.style.display = "flex";
 
-    // Clear previous clicks and set new listener
+    // Clear previous clicks and set the new listener
     yesBtn.onclick = () => {
         popup.style.display = "none";
         onConfirm(); // Run the action they confirmed
@@ -505,7 +533,7 @@ function showConfirmation(message, onConfirm) {
 
 
 
-// 17. Hard Reset button
+// 18. Hard Reset button
 document.getElementById("Wipe-Button").addEventListener("click", function () {
     showConfirmation("Are you sure you want to completely wipe ALL progress?", () => {
 
@@ -554,11 +582,11 @@ document.getElementById("Wipe-Button").addEventListener("click", function () {
 });
 
 
-// 18. Reset Counter
+// 19. Reset Counter
 let ResetCount = 0;
 
 
-// 19. Mystery Duck Event
+// 20. Mystery Duck Event
 // ===== Mystery Duck Event Variables =====
 let totalQuacksEarned = 0;
 let milestoneTarget = 20000;
@@ -603,7 +631,14 @@ function updateProgressBar() {
 // This adds all quacks ever collected
 function addQuacks(amount) {
     Quacks += amount;
-    totalQuacksEarned += amount;
+
+    // TotalQuacksEarned is capped at 1,000,000,000
+    if (totalQuacksEarned < 1000000000) {
+        totalQuacksEarned += amount;
+        if (totalQuacksEarned > 1000000000) {
+            totalQuacksEarned = 1000000000;
+        }
+    }
 
     updateQuackUI();
     updateProgressBar();
@@ -619,13 +654,14 @@ function updateQuackUI() {
 }
 
 
-//20. Different milestones = change in image
+//21. Different milestones = change in image
 const duckMilestones = [
     { threshold: 20000, image: "Images/United-Duck.png" },
     { threshold: 100000, image: "Images/Dumbo-Duck.png" },
     { threshold: 750000, image: "Images/BigBen-Duck.png" },
     { threshold: 3500000, image: "Images/Car-Duck.png" },
-    { threshold: 30000000, image: "Images/Queen-Duck.png" }
+    { threshold: 30000000, image: "Images/Queen-Duck.png" },
+    {threshold: 1000000000, image: "Images/Golden-Duck.png"}
 ];
 
 let currentDuckMilestone = -1;
@@ -647,7 +683,7 @@ function updateDuckSkin() {
                 duck.style.opacity = 1; // Fade in
             }, 200);
 
-            break; // Exit loop once milestone is matched
+            break; // Exit loop once the milestone is matched
         }
     }
 }
