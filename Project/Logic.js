@@ -437,18 +437,21 @@ function showSaveNotification(){
 
 
 // 15. Reset+ Button
+let ResetPlusCost = 1000000;
 document.getElementById("Prestige-Button").addEventListener("click", function () {
     console.log("Reset+ button clicked");
 
-    if (Quacks < 50000) {
-        showPopupMessage("🦆 You need 50,000 Quacks to activate Reset+ and earn a multiplier bonus!");
+    if (Quacks < ResetPlusCost) {
+        showPopupMessage(`🦆 You need ${ResetPlusCost.toLocaleString()} quacks to activate Reset+ and earn a multiplier bonus!`);
         return;
     }
 
     showConfirmation("Are you sure you want to use Reset+ and boost your multiplier?", () => {
         // 1. Update bonus and counters
-        PrestigeMultiplier += 0.1;
+        Quacks -= ResetPlusCost;
+        PrestigeMultiplier += 1;
         ResetCount++;
+        ResetPlusCost *= 2;
 
         // 2. Reset core game values
         Quacks = 0;
