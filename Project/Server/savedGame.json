@@ -1,0 +1,20 @@
+{
+  "quacks": 25,
+  "quackValue": 2,
+  "quacksPerSecond": 1,
+  "prestigeMultiplier": 1,
+  "resetCount": 0,
+  "upgradeCosts": {
+    "upgrade1": 24,
+    "upgrade2": 60,
+    "upgrade3": 250,
+    "upgrade4": 1000,
+    "upgrade5": 3500,
+    "upgrade6": 10000,
+    "upgrade7": 75000,
+    "upgrade8": 500000,
+    "upgrade9": 92010207
+  },
+  "totalQuacksEarned": 95,
+  "currentDuckMilestone": -1
+}
