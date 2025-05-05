@@ -9,21 +9,22 @@
 </head>
 <body>
 
-  <div id="StartScreen"> <!-- We did to only apply centering styles to StartScreen and not the whole page -->
-      <div id="Start-Menu">
+  <main id="StartScreen"> <!-- We did to only apply centering styles to StartScreen and not the whole page -->
+      <section id="Start-Menu">
         <h1>DUCK CLICKER</h1>
         <button id="Start-Button">Start</button> <!-- Start is what's written on the button -->
-      </div>
-  </div>
+      </section>
+  </main>
 
-  <div id="game" style="display: none;">
+  <main id="game" style="display: none;">
 
-      <div id="game-left" >
+      <section id="game-left" >
 
-          <div id="Counters">
-              <p id="Quack-Counter">Quacks: 0</p>
-              <p id="Quack-Rate">Quacks Per Second: 0</p>
-          </div>
+          <section id="Counters">
+              <p id="Quack-Counter"><strong>Quacks:</strong> <output>0</output></p>
+              <p id="Quack-Rate"><strong>Quacks Per Second:</strong> <output>0</output></p>
+          </section>
+
 
           <img id="duck" src="Images/DuckCutout.png" alt="Duck to click"> <!-- alt = is there as failsafe just in case the img doesn't load to explain to the player what was supposed to be there -->
 
@@ -41,97 +42,95 @@
           </div>
 
 
-      </div>
+      </section>
 
-      <div id="game-right">
+      <section id="game-right">
 
-          <div id="ClickPowerBox">
-
+          <section id="ClickPowerBox">
               <p id="Click-Power">🦆 Click Power: +1</p>
-
-          </div>
+          </section>
 
           <div id="Upgrades">
 
-              <div class="Upgrade"> <!-- Upgrade 1 -->
+              <article class="Upgrade"> <!-- Upgrade 1 -->
                   <button id="Upgrade-Button-1" class = "Upgrade-Button">
                       <span class = "Upgrade-Title">🐣 Baby Quacker</span>
                       <span id="Upgrade-Desc-1" class="Upgrade-Description">+1 Quack Per Click</span>
                       <span id="Upgrade-Cost-1" class="Upgrade-Cost">(Cost: 20 Quacks)</span>
                   </button>
-              </div>
+              </article>
 
-              <div class="Upgrade"> <!-- Upgrade 2 -->
+              <article class="Upgrade"> <!-- Upgrade 2 -->
                   <button id="Upgrade-Button-2" class = "Upgrade-Button">
                       <span class = "Upgrade-Title">🏋🏽 Duck Trainer</span>
                       <span id="Upgrade-Desc-2" class="Upgrade-Description">+1 Quack Per Second</span>
                       <span id="Upgrade-Cost-2" class="Upgrade-Cost">(Cost: 50 Quacks)</span>
                   </button>
-              </div>
+              </article>
 
-              <div class="Upgrade"> <!-- Upgrade 3 -->
+              <article class="Upgrade"> <!-- Upgrade 3 -->
                   <button id="Upgrade-Button-3" class = "Upgrade-Button">
                       <span class = "Upgrade-Title">💥 Mega Beak</span>
                       <span id="Upgrade-Desc-3" class="Upgrade-Description">+5 Quacks Per Click</span>
                       <span id="Upgrade-Cost-3" class="Upgrade-Cost">(Cost: 250 Quacks)</span>
                   </button>
-              </div>
+              </article>
 
-              <div class="Upgrade"> <!-- Upgrade 4 -->
+              <article class="Upgrade"> <!-- Upgrade 4 -->
                   <button id="Upgrade-Button-4" class = "Upgrade-Button">
                       <span class = "Upgrade-Title">🏭 Quack Factory</span>
                       <span id="Upgrade-Desc-4" class="Upgrade-Description">+7 Quacks Per Second</span>
                       <span id="Upgrade-Cost-4" class="Upgrade-Cost">(Cost: 1000 Quacks)</span>
                   </button>
-              </div>
+              </article>
 
-              <div class="Upgrade"> <!-- Upgrade 5 -->
+              <article class="Upgrade"> <!-- Upgrade 5 -->
                   <button id="Upgrade-Button-5" class = "Upgrade-Button">
                       <span class = "Upgrade-Title">⚡ The Quackening</span>
                       <span id="Upgrade-Desc-5" class="Upgrade-Description">+20 Quacks Per Click</span>
                       <span id="Upgrade-Cost-5" class="Upgrade-Cost">(Cost: 3500 Quacks)</span>
                   </button>
-              </div>
+              </article>
 
-              <div class="Upgrade"> <!-- Upgrade 6 -->
+              <article class="Upgrade"> <!-- Upgrade 6 -->
                   <button id="Upgrade-Button-6" class = "Upgrade-Button">
                           <span class = "Upgrade-Title">🌩️ QuackStorm</span>
                           <span id="Upgrade-Desc-6" class="Upgrade-Description">+55 Quacks Per Second</span>
                           <span id="Upgrade-Cost-6" class="Upgrade-Cost">(Cost: 10000 Quacks)</span>
                   </button>
-              </div>
+              </article>
 
-              <div class="Upgrade"> <!-- Upgrade 7 -->
+              <article class="Upgrade"> <!-- Upgrade 7 -->
                   <button id="Upgrade-Button-7" class = "Upgrade-Button">
                       <span class = "Upgrade-Title">💎 Quack Mine</span>
                       <span id="Upgrade-Desc-7" class="Upgrade-Description">+150 Quacks Per Click</span>
                       <span id="Upgrade-Cost-7" class="Upgrade-Cost">(Cost: 75000 Quacks)</span>
                   </button>
-              </div>
+              </article>
 
-              <div class="Upgrade"> <!-- Upgrade 8 -->
+              <article class="Upgrade"> <!-- Upgrade 8 -->
                   <button id="Upgrade-Button-8" class = "Upgrade-Button">
                       <span class = "Upgrade-Title">🧙🏽‍♂️ Wise Waddler</span>
                       <span id="Upgrade-Desc-8" class="Upgrade-Description">+1,000 Quacks Per Second</span>
                       <span id="Upgrade-Cost-8" class="Upgrade-Cost">(Cost: 500000 Quacks)</span>
                   </button>
-              </div>
+              </article>
 
-              <div class="Upgrade"> <!-- Upgrade 9 -->
+              <article class="Upgrade"> <!-- Upgrade 9 -->
                   <button id="Upgrade-Button-9" class = "Upgrade-Button">
                       <span class = "Upgrade-Title">🌀 Waddle Vortex</span>
                       <span id="Upgrade-Desc-9" class="Upgrade-Description">+3,500 Quacks Per Click</span>
                       <span id="Upgrade-Cost-9" class="Upgrade-Cost">(Cost: 2000000 Quacks)</span>
                   </button>
-              </div>
+              </article>
 
           </div>
 
-      </div>
+      </section>
 
-  </div>
+  </main>
 
-  <div id="Save-Notification">Saving...</div>
+  <aside id="Save-Notification" aria-live="polite">Saving...</aside>
 
   <div id="Prestige-Multiplier">Bonus Multiplier: x1.0</div>
   <div id="ResetPlusCounter">Reset + Uses: 0</div>
