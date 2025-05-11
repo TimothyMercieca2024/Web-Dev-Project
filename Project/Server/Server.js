@@ -26,11 +26,11 @@ app.post('/save', (req, res) => {
 
     fs.writeFile(saveFilePath, JSON.stringify(gameState, null, 2), (err) => {
         if (err) {
-            console.error('❌ Error saving game:', err);
+            console.error('Error saving game:', err);
             return res.status(500).json({ message: 'Failed to save game.' });
         }
 
-        console.log('✅ Game state saved!');
+        console.log('Game state saved!');
         res.status(200).json({ message: 'Game saved successfully.' });
     });
 });
@@ -41,7 +41,7 @@ app.post('/save', (req, res) => {
 app.get('/load', (req, res) => {
     fs.readFile(saveFilePath,'utf8', (err, data) => {
         if (err || !data) {
-            console.error('❌ Error loading game data:', err);
+            console.error('Error loading game data:', err);
             return res.status(404).json({ error: 'No game data found' });
         }
 
@@ -49,7 +49,7 @@ app.get('/load', (req, res) => {
             const gameData = JSON.parse(data);
             res.json(gameData);
         } catch (parseErr) {
-            console.error('❌ Error parsing saved game data:', parseErr);
+            console.error('Error parsing saved game data:', parseErr);
             res.status(500).json({ error: 'Failed to parse saved game data' });
         }
     });
